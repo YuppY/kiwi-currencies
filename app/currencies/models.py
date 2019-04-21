@@ -22,3 +22,8 @@ class ExchangeRate(models.Model):
 
     def convert_from_base(self, base_value):
         return base_value * self.value
+
+    class Meta:
+        constraints = (
+            models.CheckConstraint(check=models.Q(value__gt=0), name='value_positive'),
+        )

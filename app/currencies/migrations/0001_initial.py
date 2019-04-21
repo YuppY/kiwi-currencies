@@ -19,4 +19,8 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],
         ),
+        migrations.AddConstraint(
+            model_name='exchangerate',
+            constraint=models.CheckConstraint(check=models.Q(value__gt=0), name='value_positive'),
+        ),
     ]

@@ -1,3 +1,4 @@
+from django.db.utils import IntegrityError
 import pytest
 
 from currencies.models import ExchangeRate
@@ -26,3 +27,9 @@ class TestExchangeRate:
 
     def test_convert_from_base(self):
         assert ExchangeRate(value=1.5).convert_from_base(10) == 15
+
+    @pytest.mark.django_db
+    @pytest.mark.parametrize('value', (0, -2))
+    def test_constraint(self, value):
+        with pytest.raises(IntegrityError):
+            ExchangeRate.objects.create(symbol='USD', value=value)
