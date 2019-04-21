@@ -24,6 +24,4 @@ class ExchangeRate(models.Model):
         return base_value * self.value
 
     class Meta:
-        constraints = (
-            models.CheckConstraint(check=models.Q(value__gt=0), name='value_positive'),
-        )
+        constraints = (models.CheckConstraint(check=models.Q(value__gt=0), name="value_positive"),)
