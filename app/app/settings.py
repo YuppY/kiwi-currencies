@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+from currencies.settings import *  # noqa: F401, F403
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -145,8 +147,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# currencies app settings
-
-CURRENCIES_SYMBOLS = ('CZK', 'EUR', 'PLN', 'USD', 'RUB')
-CURRENCIES_OPENEXCHANGERATES_APP_ID = '<App ID>'
